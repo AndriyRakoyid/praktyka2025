@@ -18,9 +18,9 @@ import math
 def find_pythagorean_triples(n):
     triples = []
     for a in range(1, n+1):
-        for b in range(a, n+1):  # b >= a для уникнення повторів
-            c = (a**2 + b**2) ** 0.5  # Знаходимо c
-            if c.is_integer() and c <= n:  # Перевіряємо, що c — ціле число
+        for b in range(a, n+1): 
+            c = (a**2 + b**2) ** 0.5  
+            if c.is_integer() and c <= n:  
                 triples.append((a, b, int(c)))
     return triples
 
@@ -32,20 +32,20 @@ def pascal_triangle(rows):
     return triangle
 
 if __name__ == "__main__":
-    n = 50  # Можна змінити значення для інших меж
+    n = 50  
     result = find_pythagorean_triples(n)
     for triplet in result:
         print(triplet)
     
     print("\nТрикутник Паскаля:")
-    triangle = pascal_triangle(10)  # Можна змінити кількість рядків
+    triangle = pascal_triangle(10)  
     for row in triangle:
         print(row)
 
 #Завдання 3
 def sieve_of_eratosthenes(n):
     primes = [True] * (n + 1)
-    primes[0] = primes[1] = False  # 0 і 1 не є простими
+    primes[0] = primes[1] = False  
     
     for i in range(2, int(n**0.5) + 1):
         if primes[i]:
@@ -55,7 +55,7 @@ def sieve_of_eratosthenes(n):
     return [x for x in range(n + 1) if primes[x]]
 
 if __name__ == "__main__":
-    n = 1000  # Будуємо решето для перших 1000 чисел
+    n = 1000  
     prime_numbers = sieve_of_eratosthenes(n)
     print(prime_numbers)
 
@@ -71,7 +71,7 @@ def prime_factorization(n):
     return factors
 
 if __name__ == "__main__":
-    num = 250  # Можна змінювати число
+    num = 250 
     factors = prime_factorization(num)
     print(f"{num} = {', '.join(map(str, factors))}")
 
@@ -88,7 +88,7 @@ def find_palindromic_squares(limit):
     return palindromes
 
 if __name__ == "__main__":
-    limit = 100  # Перша сотня чисел
+    limit = 100  
     results = find_palindromic_squares(limit)
     for num, square in results:
         print(f"{num}^2 = {square}")
@@ -103,7 +103,7 @@ def number_to_words(n):
         return "Число повинно бути в межах 1-1000"
 
 if __name__ == "__main__":
-    num = 256  # Можна змінити число
+    num = 256  
     print(f"{num} словами: {number_to_words(num)}")
 
 
@@ -125,7 +125,7 @@ def find_twin_primes(n):
     return twin_primes
 
 if __name__ == "__main__":
-    n = 10  # Можна змінити число
+    n = 10 
     results = find_twin_primes(n)
     for p1, p2 in results:
         print(f"({p1}, {p2})")
@@ -135,7 +135,7 @@ if __name__ == "__main__":
 import textwrap
 
 def justify_text(text, width):
-    paragraphs = text.split('\n\n')  # Розбиваємо на абзаци
+    paragraphs = text.split('\n\n')  
     justified_paragraphs = ["\n".join(textwrap.wrap(paragraph, width)) for paragraph in paragraphs]
     return "\n\n".join(justified_paragraphs)
 
