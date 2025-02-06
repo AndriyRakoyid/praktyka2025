@@ -1,0 +1,148 @@
+#Завдання 1
+def find_pythagorean_triples(n):
+    triples = []
+    for a in range(1, n + 1):
+        for b in range(a, n + 1):
+            c = (a**2 + b**2) ** 0.5
+            if c.is_integer() and c <=n:
+                triples.append((a, b, int(c)))
+    return triples
+
+n = 20
+result = find_pythagorean_triples(n)
+print(result)
+                
+#Завдання 2
+import math
+
+def find_pythagorean_triples(n):
+    triples = []
+    for a in range(1, n+1):
+        for b in range(a, n+1):  # b >= a для уникнення повторів
+            c = (a**2 + b**2) ** 0.5  # Знаходимо c
+            if c.is_integer() and c <= n:  # Перевіряємо, що c — ціле число
+                triples.append((a, b, int(c)))
+    return triples
+
+def pascal_triangle(rows):
+    triangle = []
+    for n in range(rows):
+        row = [math.comb(n, k) for k in range(n + 1)]
+        triangle.append(row)
+    return triangle
+
+if __name__ == "__main__":
+    n = 50  # Можна змінити значення для інших меж
+    result = find_pythagorean_triples(n)
+    for triplet in result:
+        print(triplet)
+    
+    print("\nТрикутник Паскаля:")
+    triangle = pascal_triangle(10)  # Можна змінити кількість рядків
+    for row in triangle:
+        print(row)
+
+#Завдання 3
+def sieve_of_eratosthenes(n):
+    primes = [True] * (n + 1)
+    primes[0] = primes[1] = False  # 0 і 1 не є простими
+    
+    for i in range(2, int(n**0.5) + 1):
+        if primes[i]:
+            for j in range(i * i, n + 1, i):
+                primes[j] = False
+    
+    return [x for x in range(n + 1) if primes[x]]
+
+if __name__ == "__main__":
+    n = 1000  # Будуємо решето для перших 1000 чисел
+    prime_numbers = sieve_of_eratosthenes(n)
+    print(prime_numbers)
+
+#Завдання 4
+def prime_factorization(n):
+    factors = []
+    divisor = 2
+    while n > 1:
+        while n % divisor == 0:
+            factors.append(divisor)
+            n //= divisor
+        divisor += 1
+    return factors
+
+if __name__ == "__main__":
+    num = 250  # Можна змінювати число
+    factors = prime_factorization(num)
+    print(f"{num} = {', '.join(map(str, factors))}")
+
+#Завдання 5
+def is_palindrome(n):
+    return str(n) == str(n)[::-1]
+
+def find_palindromic_squares(limit):
+    palindromes = []
+    for i in range(1, limit + 1):
+        square = i ** 2
+        if is_palindrome(i) and is_palindrome(square):
+            palindromes.append((i, square))
+    return palindromes
+
+if __name__ == "__main__":
+    limit = 100  # Перша сотня чисел
+    results = find_palindromic_squares(limit)
+    for num, square in results:
+        print(f"{num}^2 = {square}")
+
+#Завдання 6
+from num2words import num2words
+
+def number_to_words(n):
+    if 1 <= n <= 1000:
+        return num2words(n, lang='uk')
+    else:
+        return "Число повинно бути в межах 1-1000"
+
+if __name__ == "__main__":
+    num = 256  # Можна змінити число
+    print(f"{num} словами: {number_to_words(num)}")
+
+
+#Завдання 7
+def sieve_of_eratosthenes(n):
+    primes = [True] * (n + 1)
+    primes[0] = primes[1] = False  # 0 і 1 не є простими
+    
+    for i in range(2, int(n**0.5) + 1):
+        if primes[i]:
+            for j in range(i * i, n + 1, i):
+                primes[j] = False
+    
+    return [x for x in range(n + 1) if primes[x]]
+
+def find_twin_primes(n):
+    primes = sieve_of_eratosthenes(2 * n)
+    twin_primes = [(p, p + 2) for p in primes if p + 2 in primes and p >= n]
+    return twin_primes
+
+if __name__ == "__main__":
+    n = 10  # Можна змінити число
+    results = find_twin_primes(n)
+    for p1, p2 in results:
+        print(f"({p1}, {p2})")
+
+
+#Завдання 8
+import textwrap
+
+def justify_text(text, width):
+    paragraphs = text.split('\n\n')  # Розбиваємо на абзаци
+    justified_paragraphs = ["\n".join(textwrap.wrap(paragraph, width)) for paragraph in paragraphs]
+    return "\n\n".join(justified_paragraphs)
+
+if __name__ == "__main__":
+    sample_text = (
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    )
+    width = 50  # Змінити за необхідності
+    print(justify_text(sample_text, width))
